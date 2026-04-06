@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL} from "../enviroments";
+import { API_URL} from "../environments";
 
 export function getAxiosInstance({ baseURL = null, token = null } = {}) {
   const axiosInstance = axios.create({
