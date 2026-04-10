@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import {
-  HiOutlineHome,
-  HiOutlineInformationCircle,
-  HiOutlineBriefcase,
-  HiOutlineMail,
+  HiOutlineCollection,
   HiChevronDown,
   HiOutlineUser,
   HiOutlineCog,
@@ -84,7 +81,7 @@ const NavBar = () => {
               className="dropdown-trigger"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <HiOutlineBriefcase /> Servicios{" "}
+              <HiOutlineCollection /> Categorias{" "}
               <HiChevronDown
                 className={`chevron ${dropdownOpen ? "rotated" : ""}`}
               />
@@ -172,7 +169,7 @@ const NavBar = () => {
             className="mobile-dropdown-trigger"
             onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
           >
-            <HiOutlineBriefcase /> Servicios{" "}
+            <HiOutlineCollection /> Categorias{" "}
             <HiChevronDown
               className={`chevron ${dropdownOpen ? "rotated" : ""}`}
             />
