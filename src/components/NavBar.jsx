@@ -11,6 +11,8 @@ import {
 import { RiMenu3Line } from "react-icons/ri";
 import "./NavBar.css";
 import { getCategories } from "../services/CategoriesApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsLogin } from "../app/features/loginSlice";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,8 +25,9 @@ const NavBar = () => {
   const userMenuRef = useRef(null);
 
   // Simula si hay sesión iniciada — reemplaza con tu lógica real (context, redux, etc.)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const user = { name: "Jorge Perez", email: "jorge@email.com" };
+  const isLogin = useSelector((state) => state.loginSlice.isLogin);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -49,7 +52,7 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    dispatch(setIsLogin(false));
     setUserMenuOpen(false);
     setMenuOpen(false);
   };
@@ -115,7 +118,7 @@ const NavBar = () => {
         </form>
 
         {/* Sesión — escritorio */}
-        {isLoggedIn ? (
+        {isLogin ? (
           <div className="user-menu" ref={userMenuRef}>
             <button
               className="user-avatar"
@@ -145,12 +148,12 @@ const NavBar = () => {
           </div>
         ) : (
           <div className="auth-buttons">
-            {/* <button
+            <button
               className="nav-btn-ghost"
-              onClick={() => setIsLoggedIn(true)}
+              onClick={() => dispatch(setIsLogin(true))}
             >
               Entrar
-            </button> */}
+            </button>
             <NavLink to="/register" className="nav-btn">
               Sign in
             </NavLink>
@@ -195,7 +198,7 @@ const NavBar = () => {
         <div className="mobile-divider" />
 
         {/* Sesión — móvil */}
-        {isLoggedIn ? (
+        {isLogin ? (
           <div className="mobile-user-section">
             <div className="mobile-user-info">
               <div className="user-avatar-sm">{getInitials(user.name)}</div>
