@@ -1,7 +1,7 @@
 .grid-provider {
     display: grid;   
     grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    gap: 1px;
     padding: 16px;
     align-items: stretch;   
 }
@@ -9,7 +9,7 @@
 .grid-item-provider {
     height: 100%;
     border: 1px solid var(--bg-secondary);
-    border-radius: 8px;
+    border-radius: 2px;
     padding: 10px;
     text-decoration: none;
     box-sizing: border-box;
@@ -18,7 +18,7 @@
     background-color: #fff;
 }
 
-.grid-item-provider img {
+.grid-img-provider {
     width: 100%;
 }
 

@@ -58,7 +58,7 @@ function HomePage() {
         <GridProductsComponent listProducts={listProducts} />
       </div>
       <div style={{marginTop: 50}}>
-        <SectionComponent navigateTo="/providers" title="Las mejores marcas" />
+        <SectionComponent navigateTo="/brands" title="Las mejores marcas" />
         <GridProvidersComponent listProviders={listProviders} />
       </div>
       <div>

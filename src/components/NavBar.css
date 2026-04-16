@@ -33,7 +33,7 @@
 
 .nav-links a {
   padding: 6px 14px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 14px;
   color: var(--text-muted);
   text-decoration: none;
@@ -75,7 +75,7 @@
   align-items: center;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   transition: border-color 0.15s;
   flex: 1;
@@ -125,7 +125,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 14px;
   color: var(--text-primary);
   background: none;
@@ -147,7 +147,7 @@
   left: 0;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 4px;
   min-width: 180px;
   z-index: 200;
@@ -189,7 +189,7 @@
 
 .nav-btn-ghost {
   padding: 7px 16px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 18px;
   font-weight: 500;
   background: none;
@@ -242,7 +242,7 @@
   right: 0;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 4px;
   min-width: 200px;
   z-index: 200;
@@ -324,8 +324,7 @@
 }
 
 .cart-btn {
-  border-radius: 50%;
-  background-color: var(--bg-nav);
+  background-color: transparent;
   color: var(--text-primary);
   font-size: 36px;
   font-weight: 500;

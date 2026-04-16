@@ -9,7 +9,7 @@
 .grid-item {
     height: 100%;
     border: 1px solid var(--bg-secondary);
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 10px;
     text-decoration: none;
     box-sizing: border-box;
@@ -50,7 +50,7 @@ a {
     margin-bottom: 6px;
     padding-top: 4px;
 }
-.grid-item img {
+.grid-img {
     width: 100%;
 }
 

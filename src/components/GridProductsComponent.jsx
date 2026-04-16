@@ -17,6 +17,7 @@ function GridProductsComponent({ listProducts = [] }) {
         <Link to={`/product/${product.slug}`} key={product.id}>
           <div className="grid-item">
             <img
+              className="grid-img"
               src={product.url_image}
               alt={product.name}
             />

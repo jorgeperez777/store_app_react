@@ -11,7 +11,7 @@
 }
 
 .star.filled{
-    color: #f5a623;
+    color: var(--text-primary);
 }
 
 .star.empty{
