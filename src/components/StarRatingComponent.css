@@ -11,11 +11,11 @@
 }
 
 .star.filled{
-    color: var(--text-primary);
+    color: var(--bg-star);
 }
 
 .star.empty{
-    color: #ccc;
+    color: var(--bg-empty-star);
 }
 
 .rating-value{

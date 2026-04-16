@@ -24,7 +24,7 @@
 .footer-logo {
     font-size: 35px;
     font-weight: bold;
-    color: var(--text-footer);
+    color: var(--bg-main);
 }
 
 .footer-col h4 {

@@ -21,7 +21,7 @@
 .nav-logo {
   font-size: 35px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--bg-main);
   text-decoration: none;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .nav-btn:hover {
-  background-color:  var(--btn-hover);
+  background-color:  var(--bg-hover);
 }
 
 /* ===== SEARCH BAR ===== */
@@ -137,7 +137,7 @@
 }
 
 .dropdown-trigger:hover {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-hover);
   color: var(--text-primary);
 }
 
@@ -167,7 +167,7 @@
 
 .dropdown-menu a:hover,
 .dropdown-menu a.active {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-hover);
   color: var(--text-primary);
 }
 
@@ -228,7 +228,7 @@
 }
 
 .user-avatar:hover {
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 /* ===== USER DROPDOWN ===== */
@@ -301,7 +301,7 @@
   width: 100%;
   padding: 8px 12px;
   font-size: 18px;
-  color: #E24B4A;
+  color: #d81b1b;
   background: none;
   border: none;
   border-radius: 6px;
@@ -311,7 +311,7 @@
 }
 
 .logout-btn:hover {
-  background-color: #FCEBEB;
+  background-color: #ff7575;
 }
 
 /* ===== Cart Button ===== */

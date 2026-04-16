@@ -1,10 +1,14 @@
 :root {
+  --bg-main: #0365c0;
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
+  --bg-hover: #dfdfdf;
   --bg-secondary: #eeeeee;
   --bg-nav: #ffffff;
   --bg-footer: #000;
+  --bg-star: #0365c0 ;
+  --bg-empty-star: #ccc ;
   --text-footer: #fff;
   --bg-slider: #eeeeee;
   --border: #e5e4e7;
@@ -41,9 +45,12 @@
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --bg: #161616;
+    --bg-hover: #363636;
     --bg-secondary: #252525;
     --bg-nav: #161616;
     --bg-footer: #252525;
+    --bg-star: #0365c0 ;
+    --bg-empty-star: #dddddd ;
     --text-footer: #fff;
     --bg-slider: #fff;
     --border: #2e303a;
