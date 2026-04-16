@@ -6,12 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import { Provider } from "react-redux";
 import store from "./app/store.js";
+import FooterComponent from "./components/FooterComponent.jsx";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>
       <NavBar />
       <App />
+      <FooterComponent />
     </BrowserRouter>
   </Provider>,
 );
