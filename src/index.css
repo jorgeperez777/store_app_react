@@ -4,7 +4,7 @@
   --text-h: #08060d;
   --bg: #FAFAFA;
   --bg-hover: #dadada;
-  --bg-primary: #eeeeee;
+  --bg-primary: #f3f3f3;
   --bg-secondary: #FFFFFF;
   --bg-nav: #ffffff;
   --bg-footer: #000;
@@ -47,18 +47,18 @@
   :root {
     --text: #9ca3af;
     --text-h: #f3f4f6;
-    --bg: #161616;
+    --bg: #0f0f0f;
     --bg-hover: #363636;
-    --bg-primary: #252525;
-    --bg-secondary: #252525;
-    --bg-nav: #161616;
-    --bg-footer: #252525;
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #1a1a1a;
+    --bg-nav: #0f0f0f;
+    --bg-footer: #1a1a1a;
     --bg-star: #0365c0 ;
     --bg-empty-star: #dddddd ;
     --text-footer: #fff;
     --bg-slider: #fff;
-    --shadow-card: rgba(255, 255, 255, 0.08);
-    --shadow-border-card: rgba(255, 255, 255, 0.15);
+    --shadow-card: rgba(0, 0, 0, 0.4);
+    --shadow-border-card: rgba(0, 0, 0, 0.5);
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
