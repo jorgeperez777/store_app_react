@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../services/ProductsApi";
 import GridProductsComponent from "../components/GridProductsComponent";
+import "./ListProductProvider.css";
 
 const ListProductProvider = () => {
   const { slug } = useParams();
@@ -17,8 +18,13 @@ const ListProductProvider = () => {
   }, [slug]);
 
   return (
-    <div>
-      <GridProductsComponent listProducts={listProducts} />
+    <div  className="provider-layout">
+      <aside className="provider-filters">
+        <h3>Filtros</h3>
+      </aside>
+      <main className="provider-list">
+        <GridProductsComponent listProducts={listProducts} />
+      </main>
     </div>
   );
 };

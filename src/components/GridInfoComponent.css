@@ -1,6 +1,5 @@
 .section-info-grid {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
 }
 .grid-info {
     display: grid;   
@@ -17,12 +16,12 @@
     height: 100%;
     border: 1px solid var(--border);
     border-radius: 2px;
-    padding: 5px 0px 0px 5px;
     text-decoration: none;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 4px;
     background-color: var(--bg-secondary);
 }
 

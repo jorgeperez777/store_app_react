@@ -1,0 +1,11 @@
+.title-section-brands {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--text-primary);
+}

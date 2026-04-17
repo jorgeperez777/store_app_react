@@ -51,7 +51,7 @@ const InfoRowComponent = ({
 }) => {
   return (
     <div className="grid-item-info">
-      <img src={url_img} alt={alt} style={{ height: "30%" }} />
+      <img src={url_img} alt={alt} style={{ height: "30%", paddingLeft: 10 }} />
       <div className="grid-descp">
         <span className="grid-title-info">{title}</span>
         <p>{descp}</p>

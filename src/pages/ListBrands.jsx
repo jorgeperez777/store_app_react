@@ -1,6 +1,7 @@
 import React from "react";
 import GridProvidersComponent from "../components/GridProvidersComponent";
 import { getProviders } from "../services/ProvidersApi";
+import './ListBrands.css'
 
 const ListBrands = () => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -13,9 +14,12 @@ const ListBrands = () => {
       .catch((error) => console.log(error, "error"))
       .finally(() => setIsLoading(false));
   }, []);
-  
+
   return (
     <div>
+      <div className="title-section-brands">
+        <span>Nuestras marcas</span>
+      </div>
       <GridProvidersComponent listProviders={listProviders} />
     </div>
   );

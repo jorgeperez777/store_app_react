@@ -1,0 +1,33 @@
+.provider-layout {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    align-items: flex-start; /* 👈 Evita que el aside se estire */
+}
+
+.provider-filters {
+    width: 260px;            /* 👈 Ancho fijo para filtros */
+    flex-shrink: 0;          /* 👈 No se encoge */
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    top: 80px;   
+    box-sizing: border-box;            /* 👈 Altura de tu navbar */
+}
+
+.provider-list {
+    flex: 1;                 /* 👈 Ocupa el resto del espacio */
+    min-width: 0;            /* 👈 Evita overflow */
+}
+
+/* En móvil se apilan */
+@media (max-width: 768px) {
+    .provider-layout {
+        flex-direction: column;
+    }
+
+    .provider-filters {
+        width: 100%;
+        position: static;
+    }
+}
