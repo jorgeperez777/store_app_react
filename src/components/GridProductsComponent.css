@@ -16,6 +16,13 @@
     display: flex;
     flex-direction: column;
     background-color: var(--bg-secondary);
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-card);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.grid-item:hover {
+    box-shadow: 0 8px 24px var(--shadow-border-card); 
+    transform: translateY(-4px);                  
 }
 .grid-rating {
     padding-top: 20px;
@@ -52,8 +59,21 @@ a {
 }
 .grid-img {
     width: 100%;
+    transition: transform 0.3s ease;
 }
 
+.grid-img:hover {
+    transition: scale(1.05);
+}
+
+.grid-img {
+    width: 100%;
+    transition: transform 0.3s ease; /* 👈 Muévelo aquí */
+}
+
+.grid-item:hover .grid-img {
+    transform: scale(1.05); /* 👈 */
+}
 @media (max-width: 540px) {
     .grid {
         grid-template-columns: repeat(1, 1fr) !important;
