@@ -1,0 +1,26 @@
+.categories-main {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.row-btns-categories {
+    display: flex;
+    flex-direction: row;
+}
+.categories-btn {
+  padding: 7px;
+  border-radius: 6px;
+  background-color: var(--text-muted);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 18px;
+}
+
+.categories-btn:hover {
+    opacity: 0.85;
+    color: var(--bg-main);
+    border: 1px solid var(--bg-main);
+}

@@ -44,7 +44,7 @@
 
 .footer-col ul li a {
     font-size: 14px;
-    color: var(--text-muted, #aaa);
+    color: var(--text-primary, #aaa);
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -61,7 +61,7 @@
 
 .footer-socials a {
     font-size: 14px;
-    color: var(--text-muted, #aaa);
+    color: var(--text-primary, #aaa);
     text-decoration: none;
     transition: color 0.2s;
 }

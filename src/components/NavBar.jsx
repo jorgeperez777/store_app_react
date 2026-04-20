@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import {
   HiOutlineCollection,
@@ -8,24 +8,28 @@ import {
   HiOutlineCog,
   HiOutlineLogout,
   HiShoppingCart,
+  HiX,
 } from "react-icons/hi";
 import { RiMenu3Line } from "react-icons/ri";
 import "./NavBar.css";
 import { getCategories } from "../services/CategoriesApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLogin } from "../app/features/loginSlice";
+import { getProducts } from "../services/ProductsApi";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); // <- separado
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef(null);
   const dropdownRef = useRef(null);
   const userMenuRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Simula si hay sesión iniciada — reemplaza con tu lógica real (context, redux, etc.)
   const user = { name: "Jorge Perez", email: "jorge@email.com" };
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const dispatch = useDispatch();
@@ -46,11 +50,15 @@ const NavBar = () => {
       .catch((error) => console.log(error, "error"));
   }, []);
 
-  // Cuando se cierra el menú móvil, también cierra el dropdown móvil
-  const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
-    setMobileDropdownOpen(false);
-  };
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleLogout = () => {
     dispatch(setIsLogin(false));
@@ -60,10 +68,42 @@ const NavBar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("Buscando:", search);
-    // Aquí tu lógica de búsqueda
+    navigate(`/search?q=${search}`);
+    setSearchOpen(false);
   };
-  // Iniciales del usuario para el avatar
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    if (value.trim().length < 2) {
+      setSearchResults([]);
+      setSearchOpen(false);
+      return;
+    }
+
+    getProducts({ size_items: 5, page: 1, name: value })
+      .then((res) => {
+        setSearchResults(res.data.data);
+        setSearchOpen(true);
+      })
+      .catch(console.error);
+  };
+
+  const searchBarIsFocused = () => {
+    if (setSearchResults.length > 0) {
+      setSearchOpen(true);
+    }
+  };
+
+  const onCleanSearch = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSearch("");
+    setSearchResults([]);
+    setSearchOpen(false);
+  };
+
   const getInitials = (name) => {
     return name
       .split(" ")
@@ -71,7 +111,11 @@ const NavBar = () => {
       .join("")
       .toUpperCase();
   };
-  
+
+  const onNavigateSearch = () => {
+    navigate(`/search?q=${search}`);
+  };
+
   return (
     <>
       <div className="position-nav-bar">
@@ -79,46 +123,20 @@ const NavBar = () => {
           <NavLink to={"/"} className={"nav-logo"}>
             StoreAPP
           </NavLink>
-          <div className="nav-links">
-            {/* Dropdown */}
-            {/* <div className="dropdown" ref={dropdownRef}>
-            <button
-              className="dropdown-trigger"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            >
-              <HiOutlineCollection /> Categorias{" "}
-              <HiChevronDown
-                className={`chevron ${dropdownOpen ? "rotated" : ""}`}
-              />
-            </button>
-            {dropdownOpen && (
-              <div className="dropdown-menu">
-                {categories.map((category) => (
-                  <NavLink
-                    key={category.id}
-                    to={`/category/${category.slug}`}
-                    onClick={() => setDropdownOpen(false)}
-                  >
-                    {category.name}
-                  </NavLink>
-                ))}
-              </div>
-            )}
-          </div> */}
-          </div>
+          <div className="nav-links"></div>
           {/* Search bar */}
-          <form className="search-bar" onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Buscar..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button type="submit">
-              <AiOutlineSearch />
-            </button>
-          </form>
-
+          <SearchBar
+            handleSearch={handleSearch}
+            searchRef={searchRef}
+            search={search}
+            handleSearchChange={handleSearchChange}
+            searchOpen={searchOpen}
+            searchResults={searchResults}
+            onFocus={searchBarIsFocused}
+            onCleanSearch={onCleanSearch}
+            setSearchOpen={setSearchOpen}
+            onNavigateSearch={onNavigateSearch}
+          />
           {/* CartButton */}
           <div className="cart-option">
             {/* Sesión — escritorio */}
@@ -180,21 +198,18 @@ const NavBar = () => {
         </nav>
         <div className="bottom-options">
           <div className="search-bottom-mobile">
-            <form
-              className="search-bar"
-              onSubmit={handleSearch}
-              style={{ position: "sticky" }}
-            >
-              <input
-                type="text"
-                placeholder="Buscar..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <button type="submit">
-                <AiOutlineSearch />
-              </button>
-            </form>
+            <SearchBar
+              handleSearch={handleSearch}
+              searchRef={searchRef}
+              search={search}
+              handleSearchChange={handleSearchChange}
+              searchOpen={searchOpen}
+              searchResults={searchResults}
+              onFocus={searchBarIsFocused}
+              onCleanSearch={onCleanSearch}
+              setSearchOpen={setSearchOpen}
+              onNavigateSearch={onNavigateSearch}
+            />
           </div>
           {/* Dropdown */}
           <div className="bottom-btns">
@@ -226,6 +241,80 @@ const NavBar = () => {
         </div>
       </div>
     </>
+  );
+};
+
+const SearchBar = ({
+  handleSearch = () => {},
+  searchRef = null,
+  search = "",
+  handleSearchChange = () => {},
+  searchOpen = false,
+  searchResults = [],
+  onFocus = () => {},
+  onCleanSearch = () => {},
+  setSearchOpen = () => {},
+  onNavigateSearch = () => {},
+}) => {
+  const formatPrice = (price) => {
+    return parseFloat(price).toLocaleString("es-MX", {
+      style: "currency",
+      currency: "MXN",
+    });
+  };
+
+  return (
+    <form className="search-bar" onSubmit={handleSearch} ref={searchRef}>
+      <input
+        type="text"
+        placeholder="Buscar..."
+        value={search}
+        onChange={handleSearchChange}
+        onFocus={onFocus}
+        autoComplete="off"
+      />
+      {search != "" ? (
+        <button type="button" onMouseDown={onCleanSearch}>
+          <HiX />
+        </button>
+      ) : (
+        <button type="button" onMouseDown={onNavigateSearch}>
+          <AiOutlineSearch />
+        </button>
+      )}
+      {/* Dropdown de resultados */}
+      {searchOpen && searchResults.length > 0 && (
+        <div className="search-dropdown">
+          {searchResults.map((product) => (
+            <Link
+              key={product.id}
+              to={`/product/${product.slug}`}
+              className="search-result-item"
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={() => setSearchOpen(false)}
+            >
+              <img src={product.url_image} alt={product.name} />
+              <div className="search-result-info">
+                <span className="search-result-name">{product.name}</span>
+                <span className="search-result-price">
+                  {formatPrice(product.price)}
+                </span>
+              </div>
+            </Link>
+          ))}
+
+          {/*  Botón ver todos */}
+          <Link
+            to={`/search?q=${search}`}
+            className="search-result-all"
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={() => setSearchOpen(false)}
+          >
+            Ver todos los resultados para "{search}"
+          </Link>
+        </div>
+      )}
+    </form>
   );
 };
 

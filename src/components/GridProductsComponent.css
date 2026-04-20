@@ -1,6 +1,6 @@
 .grid {
     display: grid;   
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(var(--columns, 5), 1fr);
     gap: 16px;
     padding: 16px;
     align-items: stretch;   
@@ -40,6 +40,7 @@ a {
     color: inherit;
 }
 .grid-title {
+    text-align: start;
     font-weight: bold;
     font-size: 18px;
     display: -webkit-box;
@@ -74,6 +75,7 @@ a {
 .grid-item:hover .grid-img {
     transform: scale(1.05); /* 👈 */
 }
+
 @media (max-width: 540px) {
     .grid {
         grid-template-columns: repeat(1, 1fr) !important;

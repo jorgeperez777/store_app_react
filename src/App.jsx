@@ -5,6 +5,7 @@ import ListProducts from "./pages/ListProducts";
 import ListBrands from "./pages/ListBrands";
 import ListProductProvider from "./pages/ListProductProvider";
 import ListProductCategory from "./pages/ListProductCategory";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/brand/:slug" element={<ListProductProvider />} />
       <Route path="/category/:slug" element={<ListProductCategory />} />
       <Route path="/product/:slug" element={<ProductDetailPage />} />
+      <Route path="/search" element={<SearchPage />} />
     </Routes>
   );
 }

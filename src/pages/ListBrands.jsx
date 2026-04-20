@@ -20,7 +20,7 @@ const ListBrands = () => {
       <div className="title-section-brands">
         <span>Nuestras marcas</span>
       </div>
-      <GridProvidersComponent listProviders={listProviders} />
+      <GridProvidersComponent listProviders={listProviders} numColumns={4}/>
     </div>
   );
 };

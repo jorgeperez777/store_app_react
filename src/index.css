@@ -6,11 +6,11 @@
   --bg-hover: #dadada;
   --bg-primary: #f3f3f3;
   --bg-secondary: #FFFFFF;
-  --bg-nav: #ffffff;
-  --bg-footer: #000;
+  --bg-nav: #f3f3f3;
+  --bg-footer: #f3f3f3;
   --bg-star: #0365c0 ;
   --bg-empty-star: #ccc ;
-  --text-footer: #fff;
+  --text-footer: #000;
   --bg-slider: #eeeeee;
   --shadow-card: rgba(0, 0, 0, 0.08);
   --shadow-border-card: rgba(0, 0, 0, 0.15);

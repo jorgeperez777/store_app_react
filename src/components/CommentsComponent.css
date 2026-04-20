@@ -1,0 +1,24 @@
+.comment-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 10px;
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 6px;
+}
+.comment-rating-date{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.comment-date{
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.comment-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    color: var(--text-primary);
+}

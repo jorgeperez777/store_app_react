@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./GridProductsComponent.css";
 import StarRatingComponent from "./StarRatingComponent";
 
-function GridProductsComponent({ listProducts = [] }) {
+function GridProductsComponent({ listProducts = [], numColums = 5 }) {
   const formatPrice = (price) => {
     return parseFloat(price).toLocaleString("es-MX", {
       style: "currency",
@@ -12,7 +12,7 @@ function GridProductsComponent({ listProducts = [] }) {
   };
 
   return (
-    <div className="grid">
+    <div className="grid" style={{ "--columns": numColums }}>
       {listProducts.map((product, index) => (
         <Link to={`/product/${product.slug}`} key={product.id}>
           <div className="grid-item">
