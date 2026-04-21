@@ -14,7 +14,7 @@ import { RiMenu3Line } from "react-icons/ri";
 import "./NavBar.css";
 import { getCategories } from "../services/CategoriesApi";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsLogin } from "../app/features/loginSlice";
+import { setIsLoginUser } from "../app/features/loginSlice";
 import { getProducts } from "../services/ProductsApi";
 
 const NavBar = () => {
@@ -64,7 +64,7 @@ const NavBar = () => {
   const cartCount = Object.values(cartItems).length;
 
   const handleLogout = () => {
-    dispatch(setIsLogin(false));
+    dispatch(setIsLoginUser(false));
     setUserMenuOpen(false);
     setMenuOpen(false);
   };
@@ -121,6 +121,11 @@ const NavBar = () => {
   const onNavigateCart = () => {
     navigate(`/cart`);
   };
+
+  const onNavigateSignIn = () => {
+    navigate(`/sign-in`);
+  };
+
   return (
     <>
       <div className="position-nav-bar">
@@ -185,7 +190,7 @@ const NavBar = () => {
               <div className="auth-buttons">
                 <button
                   className="nav-btn-ghost"
-                  onClick={() => dispatch(setIsLogin(true))}
+                  onMouseDown={onNavigateSignIn}
                 >
                   Sign in
                 </button>

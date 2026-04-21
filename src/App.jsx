@@ -8,6 +8,7 @@ import ListProductCategory from "./pages/ListProductCategory";
 import SearchPage from "./pages/SearchPage";
 import CartPage from "./pages/CartPage";
 import { Toaster } from "react-hot-toast";
+import SiginPage from "./pages/SiginPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/product/:slug" element={<ProductDetailPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/sign-in" element={<SiginPage />} />
       </Routes>
     </>
   );
