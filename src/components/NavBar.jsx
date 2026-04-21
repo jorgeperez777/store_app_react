@@ -32,6 +32,7 @@ const NavBar = () => {
 
   const user = { name: "Jorge Perez", email: "jorge@email.com" };
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
+  const cartItems = useSelector((state) => state.cartSlice.cartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,6 +60,8 @@ const NavBar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const cartCount = Object.values(cartItems).length;
 
   const handleLogout = () => {
     dispatch(setIsLogin(false));
@@ -115,7 +118,9 @@ const NavBar = () => {
   const onNavigateSearch = () => {
     navigate(`/search?q=${search}`);
   };
-
+  const onNavigateCart = () => {
+    navigate(`/cart`);
+  };
   return (
     <>
       <div className="position-nav-bar">
@@ -191,8 +196,13 @@ const NavBar = () => {
                 )}
               </div>
             )}
-            <button className="cart-btn">
+            <button className="cart-btn" onMouseDown={onNavigateCart}>
               <HiShoppingCart />
+              {cartCount > 0 && ( // 👈 Solo muestra si hay items
+                <span className="cart-badge">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
             </button>
           </div>
         </nav>

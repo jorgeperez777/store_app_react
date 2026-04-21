@@ -132,16 +132,32 @@
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: var(--bg-hover);
-  color: var(--text-primary);
+  background: #2290f7;
+  color: #fff;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.btn-add-cart.added {
+  background: #22c55e;   /* 👈 Verde al agregar */
+  transform: scale(1.05);
 }
 
 .btn-add-cart:hover {
   opacity: 0.85;
+}
+
+/* Animación de rebote al hacer click */
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.btn-add-cart:active {
+  animation: pop 0.3s ease;
 }
 
 .btn-buy-now {

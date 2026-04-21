@@ -6,6 +6,9 @@ import "./ProductDetailPage.css";
 import GridProductsComponent from "../components/GridProductsComponent";
 import CommentsComponent from "../components/CommentsComponent";
 import CategoriesProductComponent from "../components/CategoriesProductComponent";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../app/features/cartSlice";
+import toast from "react-hot-toast";
 
 function ProductDetailPage() {
   const { slug } = useParams();
@@ -15,6 +18,9 @@ function ProductDetailPage() {
   const [quantity, setQuantity] = React.useState(1);
   const [listProductProviders, setListProductProviders] = React.useState([]);
   const [images, setImages] = React.useState([]);
+  const [added, setAdded] = React.useState(false);
+
+  const dispatch = useDispatch();
   const comments = [
     { comment: "Calidad precio.", rating: 4, date: "2026-04-13" },
     {
@@ -27,6 +33,7 @@ function ProductDetailPage() {
   React.useEffect(() => {
     setIsLoading(true);
     setImages([]);
+    setQuantity(1);
     getProduct({ slug: slug })
       .then((response) => {
         setImages([response.data.data.url_image]);
@@ -54,16 +61,50 @@ function ProductDetailPage() {
     }
   }, [slugProduct, product]);
 
+  const finalPrice = React.useMemo(() => {
+    const price = product?.price || "0";
+    return price * quantity;
+  }, [product, quantity]);
+
   const formatPrice = (price) =>
     parseFloat(price).toLocaleString("es-MX", {
       style: "currency",
       currency: "MXN",
     });
 
+  const onAddCart = () => {
+    const uid = crypto.randomUUID();
+
+    const itemCart = {
+      productId: product.id,
+      slug: product.slug,
+      url_image: product.url_image,
+      price: finalPrice,
+      quantity: quantity,
+      name: product.name,
+      productPrice: product.price,
+      uid,
+    };
+    dispatch(addCartItem({ [uid]: itemCart }));
+    toast.success(
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <img
+          src={product.url_image}
+          style={{ width: 40, height: 40, borderRadius: 6, objectFit: "cover" }}
+        />
+        <span>
+          <b>{product.name}</b> agregado al carrito
+        </span>
+      </div>,
+    );
+    setAdded(true);
+    setTimeout(() => setAdded(false), 600);
+  };
+
   if (isLoading) return <div className="product-loading">Cargando...</div>;
   if (!product)
     return <div className="product-not-found">Producto no encontrado</div>;
-  console.log(images);
+
   return (
     <div className="product-page">
       {/* Imágenes */}
@@ -120,7 +161,7 @@ function ProductDetailPage() {
         <div className="product-details">
           <div className="product-detail-item">
             <span>Precio</span>
-            <span className="product-price">{formatPrice(product.price)}</span>
+            <span className="product-price">{formatPrice(finalPrice)}</span>
           </div>
           <div className="product-detail-item">
             <span>SKU</span>
@@ -135,8 +176,16 @@ function ProductDetailPage() {
         </div>
         {/* Botones */}
         <div className="product-actions">
-          <button className="btn-add-cart">Agregar al carrito</button>
-          <button className="btn-buy-now">Comprar ahora</button>
+          <button
+            type="button"
+            className={`btn-add-cart ${added ? "added" : ""}`}
+            onMouseDown={onAddCart}
+          >
+            {added ? "✓ Agregado" : "Agregar al carrito"}{" "}
+          </button>
+          <button type="button" className="btn-buy-now">
+            Comprar ahora
+          </button>
         </div>
       </div>
       <div className="description-product">
